@@ -5,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-//import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
@@ -47,7 +46,7 @@ public class lab4 extends Application {
         Button btAdd = new Button();
         btAdd.setText("Register Here");
         btAdd.setWrapText(true);
-        btAdd.setStyle("-fx-background-color: #ff0000; ");
+        btAdd.setStyle("-fx-background-color: #ffff00; ");
         btAdd.setPrefSize(100, 50);
         btAdd.setOnAction(new EventHandler<ActionEvent>() {
 
