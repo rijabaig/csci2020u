@@ -56,7 +56,7 @@ public class lab4 extends Application {
                         "\nPassword =" + password.getText() +
                         "\nFull Name =" + fullname.getText() +
                         "\nEmail =" + email.getText() +
-                        "\nPhone Number = (" + phone.getText().charAt(0) +
+                        "\nPhone Number =  " + phone.getText().charAt(0) +
                         phone.getText().charAt(1) + phone.getText().charAt(2) +
                         +phone.getText().charAt(3) + phone.getText().charAt(4) +
                         phone.getText().charAt(5) + +phone.getText().charAt(6) +
