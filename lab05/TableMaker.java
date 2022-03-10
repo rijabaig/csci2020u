@@ -28,31 +28,31 @@ public class TableMaker extends Application {
         TableColumn<StudentRecord, String> SIDCol = new TableColumn<>("SID");
         SIDCol.setMinWidth(200);
 
-        SIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        SIDCol.setCellValueFactory(new PropertyValueFactory<StudentRecord, String>("id"));
 
         TableColumn<StudentRecord, Float> assignmentCol = new TableColumn<>("Assignments");
         assignmentCol.setMinWidth(200);
 
-        assignmentCol.setCellValueFactory(new PropertyValueFactory<>("assignment"));
+        assignmentCol.setCellValueFactory(new PropertyValueFactory<StudentRecord, Float>("assignment"));
 
         TableColumn<StudentRecord, Float> midtermCol = new TableColumn<>("Midterm");
         midtermCol.setMinWidth(200);
 
-        midtermCol.setCellValueFactory(new PropertyValueFactory<>("midterm"));
+        midtermCol.setCellValueFactory(new PropertyValueFactory<StudentRecord, Float>("midterm"));
 
         TableColumn<StudentRecord, Float> finalCol = new TableColumn<>("Final Exam");
         finalCol.setMinWidth(200);
 
-        finalCol.setCellValueFactory(new PropertyValueFactory<>("exam"));
+        finalCol.setCellValueFactory(new PropertyValueFactory<StudentRecord, Float>("exam"));
 
         TableColumn<StudentRecord, Float> totalCol = new TableColumn<>("Final Grade");
         totalCol.setMinWidth(200);
-        totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
+        totalCol.setCellValueFactory(new PropertyValueFactory<StudentRecord, Float>("total"));
 
         TableColumn<StudentRecord, Character> letterCol = new TableColumn<>("Letter Grade");
         letterCol.setMinWidth(200);
 
-        letterCol.setCellValueFactory(new PropertyValueFactory<>("letterGrade"));
+        letterCol.setCellValueFactory(new PropertyValueFactory<StudentRecord, Character>("letterGrade"));
 
         TableView<StudentRecord> table = new TableView<>();
         table.setItems(DataSource.getAllMarks());
