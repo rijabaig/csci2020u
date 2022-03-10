@@ -13,10 +13,10 @@ public class StudentRecord {
         this.midterm = midterm;
         this.exam = exam;
         this.total = assignment * 0.2f + midterm * 0.3f + exam * 0.5f;
-        generateLetterGrade(this.total);
+        makeLetter(this.total);
     }
 
-    public char generateLetterGrade(float g) {
+    public char makeLetter(float g) {
         if (g < 50.0f) {
             return 'F';
         }
@@ -65,11 +65,11 @@ public class StudentRecord {
         this.assignment = assignment;
     }
 
-    public float gettotalGrade() {
+    public float gettotal() {
         return total;
     }
 
     public char getLetterGrade() {
-        return generateLetterGrade(gettotalGrade());
+        return makeLetter(gettotal());
     }
 }
