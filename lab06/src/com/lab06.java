@@ -47,26 +47,26 @@ public class lab06 extends Application {
         // creating bar chart
         BarChart<String, Number> barChart = new BarChart<>(x_Axis, y_Axis);
 
-        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-        series1.getData().add(new XYChart.Data<>("2015", avgHousingPricesByYear[0]));
-        series1.getData().add(new XYChart.Data<>("2016", avgHousingPricesByYear[1]));
-        series1.getData().add(new XYChart.Data<>("2017", avgHousingPricesByYear[2]));
-        series1.getData().add(new XYChart.Data<>("2018", avgHousingPricesByYear[3]));
-        series1.getData().add(new XYChart.Data<>("2019", avgHousingPricesByYear[4]));
-        series1.getData().add(new XYChart.Data<>("2020", avgHousingPricesByYear[5]));
-        series1.getData().add(new XYChart.Data<>("2021", avgHousingPricesByYear[6]));
-        series1.getData().add(new XYChart.Data<>("2022", avgHousingPricesByYear[7]));
-        series2.getData().add(new XYChart.Data<>("2015", avgCommercialPricesByYear[0]));
-        series2.getData().add(new XYChart.Data<>("2016", avgCommercialPricesByYear[1]));
-        series2.getData().add(new XYChart.Data<>("2017", avgCommercialPricesByYear[2]));
-        series2.getData().add(new XYChart.Data<>("2018", avgCommercialPricesByYear[3]));
-        series2.getData().add(new XYChart.Data<>("2019", avgCommercialPricesByYear[4]));
-        series2.getData().add(new XYChart.Data<>("2020", avgCommercialPricesByYear[5]));
-        series2.getData().add(new XYChart.Data<>("2021", avgCommercialPricesByYear[6]));
-        series2.getData().add(new XYChart.Data<>("2022", avgCommercialPricesByYear[7]));
+        XYChart.Series<String, Number> houseseries = new XYChart.Series<>();
+        XYChart.Series<String, Number> comseries = new XYChart.Series<>();
+        houseseries.getData().add(new XYChart.Data<>("2015", avgHousingPricesByYear[0]));
+        houseseries.getData().add(new XYChart.Data<>("2016", avgHousingPricesByYear[1]));
+        houseseries.getData().add(new XYChart.Data<>("2017", avgHousingPricesByYear[2]));
+        houseseries.getData().add(new XYChart.Data<>("2018", avgHousingPricesByYear[3]));
+        houseseries.getData().add(new XYChart.Data<>("2019", avgHousingPricesByYear[4]));
+        houseseries.getData().add(new XYChart.Data<>("2020", avgHousingPricesByYear[5]));
+        houseseries.getData().add(new XYChart.Data<>("2021", avgHousingPricesByYear[6]));
+        houseseries.getData().add(new XYChart.Data<>("2022", avgHousingPricesByYear[7]));
+        comseries.getData().add(new XYChart.Data<>("2015", avgCommercialPricesByYear[0]));
+        comseries.getData().add(new XYChart.Data<>("2016", avgCommercialPricesByYear[1]));
+        comseries.getData().add(new XYChart.Data<>("2017", avgCommercialPricesByYear[2]));
+        comseries.getData().add(new XYChart.Data<>("2018", avgCommercialPricesByYear[3]));
+        comseries.getData().add(new XYChart.Data<>("2019", avgCommercialPricesByYear[4]));
+        comseries.getData().add(new XYChart.Data<>("2020", avgCommercialPricesByYear[5]));
+        comseries.getData().add(new XYChart.Data<>("2021", avgCommercialPricesByYear[6]));
+        comseries.getData().add(new XYChart.Data<>("2022", avgCommercialPricesByYear[7]));
         // adding data
-        barChart.getData().addAll(series1, series2);
+        barChart.getData().addAll(houseseries, comseries);
         barChart.setTitle("Housing/Commercial Prices Yearly");
 
         // pie chart
@@ -80,7 +80,6 @@ public class lab06 extends Application {
                 new PieChart.Data(ageGroups[3], purchasesByAgeGroup[3]),
                 new PieChart.Data(ageGroups[4], purchasesByAgeGroup[4]),
                 new PieChart.Data(ageGroups[5], purchasesByAgeGroup[5]));
-        // i know i could have done a loop with i but it wasnt working for some reason, i kept getting errors. 
 
         PieChart chart = new PieChart(pieData);
         chart.setLegendVisible(false);
@@ -100,7 +99,7 @@ public class lab06 extends Application {
         HBox hbox = new HBox(barChart, chart, lb, lb2);
 
         Scene scene = new Scene(hbox);
-        hbox.setBackground(new Background(new BackgroundFill(Color.PINK, null, null))); // i wanted it pretty
+        hbox.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
