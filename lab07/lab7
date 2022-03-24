@@ -1,0 +1,100 @@
+package com.lab7;
+
+import java.io.File;
+
+import java.io.FileNotFoundException;
+
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Side;
+import javafx.scene.Scene;
+
+import javafx.scene.chart.PieChart;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+
+import javafx.stage.Stage;
+
+public class lab7 extends Application {
+
+    private Map<String, Integer> map;
+    private static Color[] pieColours = {
+            Color.PURPLE, Color.PINK, Color.BISQUE,
+            Color.BLANCHEDALMOND
+    };
+
+    private void loadData(String weatherwarnings) {
+
+        try {
+
+            Scanner sc = new Scanner(new FileReader(new File(weatherwarnings)));
+
+            while (sc.hasNext()) {
+                String l = sc.nextLine();
+                String col[] = l.split(",");
+
+                if (col.length >= 6) {
+                    String field = col[5].trim();
+                    if (map.containsKey(field)) {
+                        int num = map.get(field);
+                        num += 1;
+                        map.put(field, num);
+                    } else {
+                        map.put(field, 1);
+
+                    }
+                }
+            }
+
+        } catch (FileNotFoundException ex) {
+
+            System.out.println(ex);
+        }
+    }
+
+    ObservableList<PieChart.Data> myData() {
+
+        ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+        for (String key : map.keySet()) {
+            pieData.add(new PieChart.Data(key, map.get(key)));
+
+        }
+
+        return pieData;
+    }
+
+    @Override
+
+    public void start(Stage primaryStage) {
+
+        primaryStage.setWidth(1200);
+        primaryStage.setHeight(600);
+        map = new HashMap<>();
+        loadData("weatherwarnings.csv");
+        PieChart chart = new PieChart(myData());
+        chart.setTitle("Here is my pie chart");
+        chart.setPrefHeight(1600); // no effect
+        chart.setPrefWidth(1600);
+        chart.setLabelLineLength(10);
+        chart.setLegendSide(Side.LEFT);
+        chart.setLegendVisible(true);
+
+        HBox hbox = new HBox(chart);
+        Scene scene = new Scene(hbox);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    public static void main(String[] args) {
+
+        launch(args);
+
+    }
+
+}
