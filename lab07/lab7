@@ -38,16 +38,19 @@ public class lab7 extends Application {
                 String l = sc.nextLine();
                 String col[] = l.split(",");
 
-                if (col.length >= 6) {
-                    String field = col[5].trim();
-                    if (map.containsKey(field)) {
-                        int num = map.get(field);
-                        num += 1;
-                        map.put(field, num);
-                    } else {
-                        map.put(field, 1);
-
+                if (col.length > 5) {
+                    String f = col[5];
+                    if (!map.containsKey(f)) {
+                        map.put(f, 1);
                     }
+                    if (map.containsKey(f)) {
+                        int num = map.get(f);
+                        num += 1;
+                        map.put(f, num);
+                    }
+                }
+                if (col.length <= 5) {
+                    System.out.println("error");
                 }
             }
 
@@ -60,8 +63,9 @@ public class lab7 extends Application {
     ObservableList<PieChart.Data> myData() {
 
         ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
-        for (String key : map.keySet()) {
-            pieData.add(new PieChart.Data(key, map.get(key)));
+        for (String datakey : map.keySet()) {
+            int x = map.get(datakey);
+            pieData.add(new PieChart.Data(datakey, x));
 
         }
 
