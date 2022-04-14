@@ -24,12 +24,12 @@ public class server extends Application {
 
 
 
-    // constructor to make new serverSocket at the specified port
+
     public static void servernew() {
         try {
-            ss = new ServerSocket(8888);
+            ss = new ServerSocket(8888); //port number
         } catch (IOException ex) {
-            System.out.println("Thrown from Server constructor");
+
             ex.printStackTrace();
         }
     }
@@ -40,17 +40,16 @@ public class server extends Application {
             System.out.println("Waiting for connections...");
 
             while (true) {
-                Socket socket = serverSocket.accept();
+                Socket s = serverSocket.accept();
 
                 System.out.println("Client connected!");
 
-                // use a thread to handle each connection
-                ClientHandler clientHandler = new ClientHandler(socket);
-                Thread t = new Thread(clientHandler);
-                t.start();
+
+                ClientHandler clientHandler = new ClientHandler(s);
+                Thread thread = new Thread(clientHandler);
+                thread.start();
             }
         } catch (IOException e) {
-            System.out.println("Thrown from Server -> acceptConnections()");
             e.printStackTrace();
         }
     }
@@ -68,7 +67,7 @@ public class server extends Application {
                 input = new DataInputStream(clientSocket.getInputStream());
                 output = new DataOutputStream(clientSocket.getOutputStream());
             } catch (IOException e) {
-                System.out.println("Exception from ClientHandler constructor");
+
                 e.printStackTrace();
             }
         }
