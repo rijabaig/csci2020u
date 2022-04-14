@@ -60,7 +60,7 @@ public class client extends Application {
 
         g.add(name, 0, 0);
         g.add(nameenter, 1, 0);
-
+//setting where the fields will be
         g.add(txt, 0, 1);
         g.add(txtenter, 1, 1);
         g.setStyle("-fx-background-color: #C0C0C0;");
@@ -80,7 +80,7 @@ public class client extends Application {
     }
 
     private void sendmessage(String name, String message) throws IOException {
-        try {
+        try { //sending message
             x.output.writeUTF(name + ": " + message);
         } catch (IOException ex) {
             ex.printStackTrace();
