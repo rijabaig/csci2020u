@@ -19,36 +19,33 @@ import java.net.Socket;
 
 public class server extends Application {
     private static ServerSocket ss;
-    private static int y;
+
     static TextArea outputtext = new TextArea();
 
 
 
     // constructor to make new serverSocket at the specified port
-    public static void initServer() {
+    public static void servernew() {
         try {
             ss = new ServerSocket(8888);
-            y = 0;
-
-            // acceptConnections();
         } catch (IOException ex) {
             System.out.println("Thrown from Server constructor");
             ex.printStackTrace();
         }
     }
 
-    // method to encapsulate the instructions for the server waiting for connections
+
     public static void acceptConnections(ServerSocket serverSocket) {
         try {
             System.out.println("Waiting for connections...");
 
             while (true) {
                 Socket socket = serverSocket.accept();
-                y++;
-                System.out.println("Client #" + y + " connected!");
+
+                System.out.println("Client connected!");
 
                 // use a thread to handle each connection
-                ClientHandler clientHandler = new ClientHandler(socket, y);
+                ClientHandler clientHandler = new ClientHandler(socket);
                 Thread t = new Thread(clientHandler);
                 t.start();
             }
@@ -58,16 +55,14 @@ public class server extends Application {
         }
     }
 
-    // use threads to concurrently let two players play
-    // use ClientHandler class to add instructions to run on each thread
     public static class ClientHandler implements Runnable {
         // input and output streams
         private DataInputStream input = null;
         private DataOutputStream output = null;
-        private final int myusernumber;
 
-        public ClientHandler(Socket clientSocket, int myusernumber) {
-            this.myusernumber = myusernumber;
+
+        public ClientHandler(Socket clientSocket) {
+
 
             try {
                 input = new DataInputStream(clientSocket.getInputStream());
@@ -81,9 +76,6 @@ public class server extends Application {
         @Override
         public void run() {
             try {
-                // send the client ID
-                output.writeInt(myusernumber);
-
                 // receive the message from client
                 while (true) {
                     String message = input.readUTF();
@@ -101,12 +93,11 @@ public class server extends Application {
         }
     }
 
-    // that you write another thread class to handle the listening of incoming
-    // connections
-    public static class Connection extends Thread {
+
+    public static class Connect extends Thread {
         @Override
         public void run() {
-            initServer();
+            servernew();
             acceptConnections(ss);
         }
     }
@@ -138,7 +129,7 @@ public class server extends Application {
     }
 
     public static void main(String[] args) {
-        Connection newcon = new Connection();
+        Connect newcon = new Connect();
         newcon.start();
 
         launch();
